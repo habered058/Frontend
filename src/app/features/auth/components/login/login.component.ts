@@ -4,6 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Auth } from '../../../../core/models/auth.interface';
+import { Store } from '@ngrx/store';
+import { login } from '../../store/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -23,25 +26,18 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private store: Store
   ) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
-      this.authService.login(username, password).subscribe({
-        next: (response) => {
-          console.log('Login exitoso', response);
-        },
-        error: (err) => {
-          console.error('Error en el login', err);
-        }
-      });
+      const loginData : Auth = this.loginForm.value;
+      this.store.dispatch(login(loginData));
     } else {
       console.log('Formulario inválido');
     }

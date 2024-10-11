@@ -1,15 +1,15 @@
 <div class="login-container">
     <mat-card>
       <h1>BookPoint</h1>
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline">
-          <mat-label>Username</mat-label>
-          <input matInput placeholder="Ingresa el usuario" />
+          <mat-label>Email</mat-label>
+          <input matInput type="email" placeholder="Ingresa el correo" formControlName="email" />
         </mat-form-field>
   
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput type="password" placeholder="Ingresa la contraseña" />
+          <input matInput type="password" placeholder="Ingresa la contraseña" formControlName="password" />
         </mat-form-field>
   
         <button mat-raised-button color="primary">Login</button>
