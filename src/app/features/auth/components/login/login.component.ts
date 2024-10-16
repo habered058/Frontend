@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Auth } from '../../../../core/models/auth.interface';
+import { Auth } from '../../../../core/interfaces/auth.interface';
 import { Store } from '@ngrx/store';
 import { login } from '../../store/auth.actions';
 import { ToastComponent } from '../../../../shared/components/toast/toast.component';

@@ -12,7 +12,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { rootReducer } from './store/root.reducer';
 import { rootEffects } from './store/root.effects';
-import { httpErrorInterceptor } from './core/interceptors/http-error.interceptor';
+import { errorInterceptor } from './core/interceptors/error.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(
-      withInterceptors([httpErrorInterceptor])
+      withInterceptors([errorInterceptor])
     ),
     provideStore(rootReducer),
     provideEffects(rootEffects),

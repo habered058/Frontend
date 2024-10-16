@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>{{ data.id ? 'Actualizar' : 'Crear' }} Registro</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <mat-label>ID</mat-label>
+      <input matInput formControlName="id">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="description">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Capacidad</mat-label>
+        <input matInput formControlName="capacity">
+      </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button color="primary" (click)="onSaveClick()" [disabled]="!form.valid">Guardar</button>
+</div>
