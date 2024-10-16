@@ -1,7 +1,10 @@
 import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
+import { ToastService } from '../../shared/services/toast.service';
+import { inject } from '@angular/core';
 
 export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
+  const toastService = inject(ToastService); 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       let errorMsg = '';
@@ -14,7 +17,7 @@ export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
         errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
         console.log(errorMsg)
       }
-      console.error(errorMsg);
+      toastService.showToast(errorMsg, 5000);
       return throwError(() => new Error(errorMsg));
     })
   );
